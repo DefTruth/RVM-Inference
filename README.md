@@ -70,10 +70,10 @@ class LITE_EXPORTS lite::cv::matting::RobustVideoMatting;
 * `detect`接口输入参数说明：
   * mat: cv::Mat BGR格式图像
   * content: types::MattingContent类型，用来保存检测的结果，包含类型为cv::Mat的三个成员，分别是
-    * fgr_mat: cv::Mat (H,W,C=3) BGR 格式，值范围为0~255 的 CV_8UC3, 用于保存估计的前景
-    * pha_mat: cv::Mat (H,W,C=1) 值范围为0.~1.的 CV_32FC1, 用于保存估计的alpha(matte)值
-    * merge_mat: cv::Mat (H,W,C=3) BGR 格式，值范围为0~255 的 CV_8UC3, 用于根据pha融合前景背景的合成图像  
-    * flag: bool 类型标志位，表示是否检测成功
+    * `fgr_mat`: `cv::Mat (H,W,C=3) BGR` 格式，值范围为0~255 的 `CV_8UC3`, 用于保存估计的前景
+    * `pha_mat`:` cv::Mat (H,W,C=1)` 值范围为0.~1.的 `CV_32FC1`, 用于保存估计的alpha(matte)值
+    * `merge_mat`: `cv::Mat (H,W,C=3) BGR` 格式，值范围为0~255 的 `CV_8UC3`, 用于根据pha融合前景背景的合成图像  
+    * `flag`: bool 类型标志位，表示是否检测成功
   * downsample_ratio: float，下采样比率，默认0.25f，值的设置可以参考[官方文档](https://github.com/PeterL1n/RobustVideoMatting/blob/master/documentation/inference_zh_Hans.md) , 如下：
 
     | 分辨率         | 人像           | 全身            |
@@ -108,6 +108,7 @@ static void test_image()
   std::string onnx_path = "../hub/onnx/cv/rvm_mobilenetv3_fp32.onnx";
   std::string img_path = "../examples/lite/resources/test.jpg";
   std::string save_fgr_path = "../logs/test_lite_rvm_fgr.jpg";
+  std::string save_pha_path = "../logs/test_rvm_pha.jpg";
   std::string save_merge_path = "../logs/test_lite_rvm_merge.jpg";
 
   auto *rvm = new lite::cv::matting::RobustVideoMatting(onnx_path, 16); // 16 threads
