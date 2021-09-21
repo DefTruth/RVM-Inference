@@ -4,11 +4,15 @@
 使用Lite.AI.ToolKit C++工具箱来跑RobustVideoMatting的一些案例(https://github.com/DefTruth/lite.ai.toolkit) .  
 
 <div align='center'>
-  <img src='resources/rvm0is.gif' height="200px" width="350px">
-  <img src='resources/rvm0s.gif' height="200px" width="350px">  
+  <img src='resources/interviewi.gif' height="200px" width="200px">
+  <img src='resources/interview.gif' height="200px" width="200px">  
+  <img src='resources/dance3i.gif' height="200px" width="200px">
+  <img src='resources/dance3.gif' height="200px" width="200px">
   <br>
-  <img src='resources/rvm1is.gif' height="200px" width="350px">
-  <img src='resources/rvm1s.gif' height="200px" width="350px">
+  <img src='resources/teslai.gif' height="200px" width="200px">
+  <img src='resources/tesla.gif' height="200px" width="200px">  
+  <img src='resources/b5i.gif' height="200px" width="200px">
+  <img src='resources/b5.gif' height="200px" width="200px">
 </div>
 
 Star 🌟👆🏻 this repo if it does any helps to you ~ 🙃🤪🍀
@@ -148,8 +152,8 @@ static void test_image()
 static void test_video()
 {
   std::string onnx_path = "../hub/onnx/cv/rvm_mobilenetv3_fp32.onnx";
-  std::string video_path = "../examples/lite/resources/1917.mp4";
-  std::string output_path = "../logs/1917_onnx.mp4";
+  std::string video_path = "../examples/lite/resources/tesla.mp4";
+  std::string output_path = "../logs/tesla_onnx.mp4";
 
   auto *rvm = new lite::cv::matting::RobustVideoMatting(onnx_path, 16); // 16 threads
   std::vector<lite::cv::types::MattingContent> contents;
@@ -165,11 +169,15 @@ static void test_video()
 * 输出结果为：  
 
 <div align='center'>
-  <img src='resources/rvm0is.gif' height="200px" width="350px">
-  <img src='resources/rvm0s.gif' height="200px" width="350px">  
+  <img src='resources/interviewi.gif' height="200px" width="200px">
+  <img src='resources/interview.gif' height="200px" width="200px">  
+  <img src='resources/dance3i.gif' height="200px" width="200px">
+  <img src='resources/dance3.gif' height="200px" width="200px">
   <br>
-  <img src='resources/rvm1is.gif' height="200px" width="350px">
-  <img src='resources/rvm1s.gif' height="200px" width="350px">
+  <img src='resources/teslai.gif' height="200px" width="200px">
+  <img src='resources/tesla.gif' height="200px" width="200px">  
+  <img src='resources/b5i.gif' height="200px" width="200px">
+  <img src='resources/b5.gif' height="200px" width="200px">
 </div>
 
 ## 6. 编译运行  
@@ -197,4 +205,6 @@ write done! 6/774 done!
 ...
 write done! 724/774 done!
 Testing Successful !
-```
+```  
+
+![](resources/b5.gif)
