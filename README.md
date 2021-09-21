@@ -15,7 +15,7 @@
   <img src='resources/b5.gif' height="200px" width="200px">
 </div>
 
-Star 🌟👆🏻 this repo if it does any helps to you ~ 🙃🤪🍀
+整理不易，欢迎关注，🌟点赞收藏~  
 
 ## 2. C++版本源码
 
