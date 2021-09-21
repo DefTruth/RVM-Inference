@@ -207,4 +207,4 @@ write done! 724/774 done!
 Testing Successful !
 ```  
 
-![](resources/b5.gif)
+![](resources/tesla.gif)
