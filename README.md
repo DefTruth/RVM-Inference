@@ -139,7 +139,7 @@ static void test_image()
   <img src='resources/test.jpg' height="200px" width="200px">
   <img src='resources/test_rvm_pha.jpg' height="200px" width="200px">
   <img src='resources/test_rvm_fgr.jpg' height="200px" width="200px">
-  <img src='resources/test_rvm.jpg' height="200px" width="200px">
+  <img src='resources/test_rvm_merge.jpg' height="200px" width="200px">
 </div>
 
 ### 5.2 视频抠图案例  
@@ -207,4 +207,4 @@ write done! 724/774 done!
 Testing Successful !
 ```  
 
-![](resources/tesla.gif)
+![](resources/teslab.gif)

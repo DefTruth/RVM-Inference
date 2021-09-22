@@ -8,8 +8,8 @@
 static void test_video()
 {
   std::string onnx_path = "../hub/onnx/cv/rvm_mobilenetv3_fp32.onnx";
-  std::string video_path = "../resources/tesla.mp4";
-  std::string output_path = "../logs/tesla_onnx.mp4";
+  std::string video_path = "../resources/interview.mp4";
+  std::string output_path = "../logs/interview_onnx.mp4";
 
   auto *rvm = new lite::cv::matting::RobustVideoMatting(onnx_path, 16); // 16 threads
   std::vector<lite::cv::types::MattingContent> contents;
