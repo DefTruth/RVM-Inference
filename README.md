@@ -1,4 +1,10 @@
 ## RobustVideoMatting.lite.ai.toolkit 🚀🚀🌟  
+<div align='left'>
+  <img src=https://img.shields.io/github/stars/DefTruth/RobustVideoMatting.lite.ai.toolkit.svg?style=social >
+  <img src=https://img.shields.io/github/forks/DefTruth/RobustVideoMatting.lite.ai.toolkit.svg?style=social >
+  <img src=https://img.shields.io/github/watchers/DefTruth/RobustVideoMatting.lite.ai.toolkit.svg?style=social>
+  <img src=https://visitor-badge.laobi.icu/badge?page_id=DefTruth.RobustVideoMatting.lite.ai.toolkit >
+</div>
 
 ## 1. 简介  
 使用Lite.AI.ToolKit C++工具箱来跑RobustVideoMatting的一些案例(https://github.com/DefTruth/lite.ai.toolkit) .  
