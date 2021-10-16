@@ -12,7 +12,7 @@ static void test_video()
   std::string output_path = "../logs/interview_onnx.mp4";
 
   auto *rvm = new lite::cv::matting::RobustVideoMatting(onnx_path, 16); // 16 threads
-  std::vector<lite::cv::types::MattingContent> contents;
+  std::vector<lite::types::MattingContent> contents;
 
   // 1. video matting.
   rvm->detect_video(video_path, output_path, contents, false, 0.25f);
@@ -31,7 +31,7 @@ static void test_image()
   std::string save_merge_path = "../logs/test_rvm_merge.jpg";
 
   auto *rvm = new lite::cv::matting::RobustVideoMatting(onnx_path, 16); // 16 threads
-  lite::cv::types::MattingContent content;
+  lite::types::MattingContent content;
   cv::Mat img_bgr = cv::imread(img_path);
 
   // 1. image matting.

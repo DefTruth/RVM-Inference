@@ -3,11 +3,10 @@
   <img src=https://img.shields.io/github/stars/DefTruth/RobustVideoMatting.lite.ai.toolkit.svg?style=social >
   <img src=https://img.shields.io/github/forks/DefTruth/RobustVideoMatting.lite.ai.toolkit.svg?style=social >
   <img src=https://img.shields.io/github/watchers/DefTruth/RobustVideoMatting.lite.ai.toolkit.svg?style=social>
-  <img src=https://visitor-badge.laobi.icu/badge?page_id=DefTruth.RobustVideoMatting.lite.ai.toolkit >
 </div>
 
 ## 1. 简介  
-使用Lite.AI.ToolKit C++工具箱来跑RobustVideoMatting的一些案例(https://github.com/DefTruth/lite.ai.toolkit) .  
+使用Lite.AI.ToolKit C++工具箱来跑RobustVideoMatting的一些案例(https://github.com/DefTruth/lite.ai.toolkit) ，ONNXRuntime、MNN、NCNN和TNN四个版本。
 
 <div align='center'>
   <img src='resources/interviewi.gif' height="200px" width="200px">
@@ -25,12 +24,21 @@
 
 ## 2. C++版本源码
 
-RobustVideoMatting C++ 版本的源码是用ONNXRuntime的C++ API实现的，可以在 [lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit) 工具箱中找到。本项目主要介绍如何基于 [lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit) 工具箱，直接使用RobustVideoMatting实现视频抠图和图片抠图。需要说明的是，本项目是基于MacOS下编译的 [liblite.ai.toolkit.v0.1.0.dylib](https://github.com/DefTruth/RobustVideoMatting.lite.ai.toolkit/blob/main/lite.ai.toolkit/lib) 来实现的，对于使用MacOS的用户，可以直接下载本项目包含的*liblite.ai.toolkit.v0.1.0*动态库和其他依赖库进行使用。而非MacOS用户，则需要从[lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit) 中下载源码进行编译。[lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit) c++工具箱的编译已经在MacOS/Linux/Windows下编译测试通过，支持CPU和GPU环境，目前包含70+流行的开源模型。
- * [rvm.cpp](https://github.com/DefTruth/lite.ai.toolkit/blob/main/ort/cv/rvm.cpp)
- * [rvm.h](https://github.com/DefTruth/lite.ai.toolkit/blob/main/ort/cv/rvm.h)
+RobustVideoMatting C++ 版本的源码包含ONNXRuntime、MNN、NCNN和TNN四个版本，可以在 [lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit) 工具箱中找到。本项目主要介绍如何基于 [lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit) 工具箱，直接使用RobustVideoMatting实现视频抠图和图片抠图。需要说明的是，本项目是基于MacOS下编译的 [liblite.ai.toolkit.v0.1.0.dylib](https://github.com/DefTruth/RobustVideoMatting.lite.ai.toolkit/blob/main/lite.ai.toolkit/lib) 来实现的，对于使用MacOS的用户，可以直接下载本项目包含的*liblite.ai.toolkit.v0.1.0*动态库和其他依赖库进行使用。而非MacOS用户，则需要从[lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit) 中下载源码进行编译。[lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit) c++工具箱的编译已经在MacOS/Linux/Windows下编译测试通过，支持CPU和GPU环境，目前包含70+流行的开源模型。
+ * [rvm.cpp](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ort/cv/rvm.cpp)
+ * [rvm.h](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ort/cv/rvm.h)
+ * [mnn_rvm.cpp](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/mnn/cv/mnn_rvm.cpp)
+ * [mnn_rvm.h](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/mnn/cv/mnn_rvm.h)
+ * [ncnn_rvm.cpp](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ncnn/cv/ncnn_rvm.cpp)
+ * [ncnn_rvm.h](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ncnn/cv/ncnn_rvm.h)
+ * [tnn_rvm.cpp](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/tnn/cv/tnn_rvm.cpp)
+ * [tnn_rvm.h](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/tnn/cv/tnn_rvm.h)
+
+NCNN版本的测试没有通过，转换的模型可能有问题，这里先放出代码。TNN版本的正在调试，很快就会放出来。这里案例使用的接口是默认版本，即ONNXRuntime. 目前ONNXRuntime和MNN版本均已测试通过。
 
 ## 3. 模型文件  
 
+### 3.1 ONNX模型文件  
 可以从我提供的链接下载 ([Baidu Drive](https://pan.baidu.com/s/1elUGcx7CZkkjEoYhTMwTRQ) code: 8gin) , 也可以从 [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) 官方仓库下载。
 
 |                Class                | Pretrained ONNX Files |              Rename or Converted From (Repo)              | Size  |
@@ -40,6 +48,52 @@ RobustVideoMatting C++ 版本的源码是用ONNXRuntime的C++ API实现的，可
 | *lite::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32.onnx   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
 | *lite::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp16.onnx   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 100Mb |
 
+### 3.2 MNN模型文件 
+可以从我提供的链接下载 ([Baidu Drive](https://pan.baidu.com/s/1KyO-bCYUv6qPq2M8BH_Okg) code: 9v63) 
+
+|                Class                | Pretrained MNN Files |              Rename or Converted From (Repo)              | Size  |
+| :---------------------------------: | :-------------------: | :-------------------------------------------------------: | :---: |
+| *lite::mnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32.mnn   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::mnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-480-480.mnn   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::mnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-480-640.mnn   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::mnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-640-480.mnn   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::mnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-1080-1920.mnn   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::mnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32.mnn   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::mnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-480-480.mnn   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::mnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-480-640.mnn   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::mnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-640-480.mnn   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::mnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-1080-1920.mnn   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+
+### 3.3 NCNN模型文件 
+可以从我提供的链接下载 ([Baidu Drive](https://pan.baidu.com/s/1hlnqyNsFbMseGFWscgVhgQ) code: sc7f)
+
+|                Class                | Pretrained NCNN Files |              Rename or Converted From (Repo)              | Size  |
+| :---------------------------------: | :-------------------: | :-------------------------------------------------------: | :---: |
+| *lite::ncnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-opt.param&bin   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::ncnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-480-480-opt.param&bin   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::ncnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-480-640-opt.param&bin   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::ncnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-640-480-opt.param&bin   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::ncnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-1080-1920-opt.param&bin   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::ncnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-opt.param&bin   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::ncnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-480-480-opt.param&bin   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::ncnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-480-640-opt.param&bin   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::ncnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-640-480-opt.param&bin   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::ncnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-1080-1920-opt.param&bin   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+
+### 3.4 TNN模型文件
+可以从我提供的链接下载 ([Baidu Drive](https://pan.baidu.com/s/1lvM2YKyUbEc5HKVtqITpcw) code: 6o6k)
+
+|                Class                | Pretrained TNN Files |              Rename or Converted From (Repo)              | Size  |
+| :---------------------------------: | :-------------------: | :-------------------------------------------------------: | :---: |
+| *lite::tnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-480-480-sim.tnnproto&tnnmodel   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::tnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-480-640-sim.tnnproto&tnnmodel   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::tnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-640-480-sim.tnnproto&tnnmodel   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::tnn::cv::matting::RobustVideoMatting* |   rvm_mobilenetv3_fp32-1080-1920-sim.tnnproto&tnnmodel   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 14Mb |
+| *lite::tnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-480-480-sim.tnnproto&tnnmodel   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::tnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-480-640-sim.tnnproto&tnnmodel   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::tnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-640-480-sim.tnnproto&tnnmodel   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+| *lite::tnn::cv::matting::RobustVideoMatting* |   rvm_resnet50_fp32-1080-1920-sim.tnnproto&tnnmodel   | [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) | 50Mb |
+
 
 ## 4. 接口文档
 
@@ -47,8 +101,12 @@ RobustVideoMatting C++ 版本的源码是用ONNXRuntime的C++ API实现的，可
 
 ```c++
 class LITE_EXPORTS lite::cv::matting::RobustVideoMatting;
+class LITE_EXPORTS lite::mnn::cv::matting::RobustVideoMatting;
+class LITE_EXPORTS lite::tnn::cv::matting::RobustVideoMatting;
+class LITE_EXPORTS lite::ncnn::cv::matting::RobustVideoMatting;
 ```
-该类型目前包含两个公共接口，分别是`detect`和`detect_video`，前者用于图像抠图，后者用于视频抠图。  
+
+该类型目前包含两个公共接口，分别是`detect`和`detect_video`，前者用于图像抠图，后者用于视频抠图。不同推理引擎的实现，接口基本相同。TNN、MNN和NCNN版本的接口不含downsample_ratio，因为转换时，我是按照静态维度转换的，并且在转换模型时固定了一个合适的downsample_ratio，不需要再推理时再设置。具体区别可以跳转到c++实现的源码查看。  
 ```c++
      /**
      * Image Matting Using RVM(https://github.com/PeterL1n/RobustVideoMatting)
@@ -121,8 +179,8 @@ static void test_image()
   std::string save_pha_path = "../logs/test_rvm_pha.jpg";
   std::string save_merge_path = "../logs/test_lite_rvm_merge.jpg";
 
-  auto *rvm = new lite::cv::matting::RobustVideoMatting(onnx_path, 16); // 16 threads
-  lite::cv::types::MattingContent content;
+  auto *rvm = new lite::matting::RobustVideoMatting(onnx_path, 16); // 16 threads
+  lite::types::MattingContent content;
   cv::Mat img_bgr = cv::imread(img_path);
 
   // 1. image matting.
@@ -150,6 +208,7 @@ static void test_image()
 
 ### 5.2 视频抠图案例  
 
+#### 5.2.1 默认的ONNXRuntime版本
 ```c++
 
 #include "lite/lite.h"
@@ -162,7 +221,7 @@ static void test_video()
   std::string output_path = "../logs/tesla_onnx.mp4";
 
   auto *rvm = new lite::cv::matting::RobustVideoMatting(onnx_path, 16); // 16 threads
-  std::vector<lite::cv::types::MattingContent> contents;
+  std::vector<lite::types::MattingContent> contents;
 
   // 1. video matting.
   rvm->detect_video(video_path, output_path, contents, false, 0.4f);
@@ -171,6 +230,27 @@ static void test_video()
 }
 
 ```  
+
+#### 5.2.2 MNN版本  
+```c++
+static void test_mnn()
+{
+#ifdef ENABLE_MNN
+  std::string mnn_path = "../hub/mnn/cv/rvm_mobilenetv3_fp32-480-640.mnn";
+  std::string video_path = "../examples/lite/resources/tesla.mp4";
+  std::string output_path = "../logs/tesla_mnn.mp4";
+
+  auto *rvm = new lite::mnn::cv::matting::RobustVideoMatting(mnn_path, 16, 0); // 16 threads
+  std::vector<lite::types::MattingContent> contents;
+
+  // 1. video matting.
+  rvm->detect_video(video_path, output_path, contents, false);
+
+  delete rvm;
+#endif
+}
+```
+
 
 * 输出结果为：  
 
@@ -186,13 +266,48 @@ static void test_video()
   <img src='resources/b5.gif' height="200px" width="200px">
 </div>
 
-## 6. 编译运行  
+## 6. 编译运行    
 在MacOS下可以直接编译运行本项目，无需下载其他依赖库。其他系统则需要从[lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit) 中下载源码先编译*lite.ai.toolkit.v0.1.0*动态库。  
 ```shell
 git clone --depth=1 https://github.com/DefTruth/RobustVideoMatting.lite.ai.toolkit.git
 cd RobustVideoMatting.lite.ai.toolkit 
 sh ./build.sh
-```  
+```    
+* CMakeLists.txt设置
+```cmake
+cmake_minimum_required(VERSION 3.17)
+project(RobustVideoMatting.lite.ai.toolkit)
+
+set(CMAKE_CXX_STANDARD 11)
+
+# setting up lite.ai.toolkit
+set(LITE_AI_DIR ${CMAKE_SOURCE_DIR}/lite.ai.toolkit)
+set(LITE_AI_INCLUDE_DIR ${LITE_AI_DIR}/include)
+set(LITE_AI_LIBRARY_DIR ${LITE_AI_DIR}/lib)
+include_directories(${LITE_AI_INCLUDE_DIR})
+link_directories(${LITE_AI_LIBRARY_DIR})
+
+set(OpenCV_LIBS
+        opencv_highgui
+        opencv_core
+        opencv_imgcodecs
+        opencv_imgproc
+        opencv_video
+        opencv_videoio
+        )
+# add your executable
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/examples/build)
+
+add_executable(lite_rvm examples/test_lite_rvm.cpp)
+target_link_libraries(lite_rvm
+        lite.ai.toolkit
+        onnxruntime
+        MNN
+        ncnn
+        ${OpenCV_LIBS})  # link lite.ai.toolkit & other libs.
+```
+
+
 * building && testing information:  
 ```shell
 -- Generating done
