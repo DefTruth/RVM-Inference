@@ -8,6 +8,7 @@
 #include "config.h"
 #include "lite.ai.defs.h"
 
+#include <map>
 #include <cmath>
 #include <vector>
 #include <cassert>
@@ -15,6 +16,7 @@
 #include <string>
 #include <algorithm>
 #include <memory>
+#include <fstream>
 #include <unordered_map>
 #include <unordered_set>
 #include <limits>

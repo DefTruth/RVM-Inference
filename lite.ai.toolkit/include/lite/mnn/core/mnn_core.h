@@ -15,6 +15,7 @@ namespace mnncv
   class LITE_EXPORTS MNNNanoDetEfficientNetLite;     // [1] * reference: https://github.com/RangiLyu/nanodet
   class LITE_EXPORTS MNNRobustVideoMatting;          // [2] * reference: https://github.com/PeterL1n/RobustVideoMatting
   class LITE_EXPORTS MNNYoloX;                       // [3] * reference: https://github.com/Megvii-BaseDetection/YOLOX
+  class LITE_EXPORTS MNNYOLOP;                       // [4] * reference: https://github.com/hustvl/YOLOP
 }
 
 namespace mnncv

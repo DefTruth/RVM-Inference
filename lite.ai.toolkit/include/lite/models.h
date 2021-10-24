@@ -92,6 +92,7 @@
 #include "lite/mnn/cv/mnn_nanodet_efficientnet_lite.h"
 #include "lite/mnn/cv/mnn_rvm.h"
 #include "lite/mnn/cv/mnn_yolox.h"
+#include "lite/mnn/cv/mnn_yolop.h"
 
 #endif
 
@@ -110,6 +111,15 @@
 
 // ENABLE_TNN
 #ifdef ENABLE_TNN
+
+#include "lite/tnn/core/tnn_core.h"
+#include "lite/tnn/core/tnn_utils.h"
+#include "lite/tnn/cv/tnn_yolox.h"
+#include "lite/tnn/cv/tnn_rvm.h"
+#include "lite/tnn/cv/tnn_yolop.h"
+#include "lite/tnn/cv/tnn_nanodet.h"
+#include "lite/tnn/cv/tnn_nanodet_efficientnet_lite.h"
+
 #endif
 
 // Default Engine ONNXRuntime
@@ -708,6 +718,7 @@ namespace lite
         typedef mnncv::MNNNanoDet NanoDet;
         typedef mnncv::MNNNanoDetEfficientNetLite NanoDetEfficientNetLite;
         typedef mnncv::MNNYoloX YoloX;
+        typedef mnncv::MNNYOLOP YOLOP;
 
       }
       // face etc.
@@ -759,7 +770,7 @@ namespace lite
 {
 #ifdef ENABLE_NCNN
   namespace ncnn
-    {
+  {
     namespace cv
     {
       // classification
@@ -823,8 +834,61 @@ namespace lite
 {
 #ifdef ENABLE_TNN
   namespace tnn
+  {
+    namespace cv
     {
-    }
+      // classification
+      namespace classification
+      {
+      }
+      // object detection
+      namespace detection
+      {
+        typedef tnncv::TNNYoloX YoloX;
+        typedef tnncv::TNNYOLOP YOLOP;
+        typedef tnncv::TNNNanoDet NanoDet;
+        typedef tnncv::TNNNanoDetEfficientNetLite NanoDetEfficientNetLite;
+      }
+      // face etc.
+      namespace face
+      {
+        namespace detect
+        {
+        }
+        namespace align
+        {
+        }
+        namespace pose
+        {
+        }
+        namespace attr
+        {
+        }
+      }
+      // face recognition
+      namespace faceid
+      {
+      }
+      // segmentation
+      namespace segmentation
+      {
+      }
+      // reid
+      namespace reid
+      {
+      }
+      // ocr
+      namespace ocr
+      {
+      }
+      // matting
+      namespace matting
+      {
+        typedef tnncv::TNNRobustVideoMatting RobustVideoMatting;
+      }
+
+    } // namespace cv
+  }
 #endif
 }
 

@@ -12,7 +12,7 @@ namespace mnncv
   class LITE_EXPORTS MNNRobustVideoMatting
   {
   public:
-    explicit MNNRobustVideoMatting(const std::string _mnn_path,
+    explicit MNNRobustVideoMatting(const std::string &_mnn_path,
                                    unsigned int _num_threads = 1,
                                    unsigned int _variant_type = VARIANT::MOBILENETV3); //
     ~MNNRobustVideoMatting();

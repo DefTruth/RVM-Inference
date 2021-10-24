@@ -27,7 +27,7 @@ namespace mnncv
   class LITE_EXPORTS MNNNanoDetEfficientNetLite : public BasicMNNHandler
   {
   public:
-    explicit MNNNanoDetEfficientNetLite(const std::string _mnn_path, unsigned int _num_threads = 1); //
+    explicit MNNNanoDetEfficientNetLite(const std::string &_mnn_path, unsigned int _num_threads = 1); //
     ~MNNNanoDetEfficientNetLite() override = default;
 
   private:

@@ -14,7 +14,7 @@ namespace mnncore
   protected:
     std::shared_ptr<MNN::Interpreter> mnn_interpreter;
     MNN::Session *mnn_session = nullptr;
-    MNN::Tensor *input_tensor = nullptr; // single input.
+    MNN::Tensor *input_tensor = nullptr; // assume single input.
     MNN::ScheduleConfig schedule_config;
     std::shared_ptr<MNN::CV::ImageProcess> pretreat; // init at subclass
     const char *log_id = nullptr;

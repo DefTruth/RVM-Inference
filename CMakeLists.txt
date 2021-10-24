@@ -25,8 +25,7 @@ add_executable(lite_rvm examples/test_lite_rvm.cpp)
 target_link_libraries(lite_rvm
         lite.ai.toolkit
         onnxruntime
-        MNN
-        ncnn
+        MNN  # need, if built lite.ai.toolkit with ENABLE_MNN=ON,  default OFF
+        ncnn # need, if built lite.ai.toolkit with ENABLE_NCNN=ON, default OFF
+        TNN  # need, if built lite.ai.toolkit with ENABLE_TNN=ON,  default OFF
         ${OpenCV_LIBS})  # link lite.ai.toolkit & other libs.
-
-

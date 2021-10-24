@@ -20,7 +20,7 @@
   <img src='resources/b5.gif' height="200px" width="200px">
 </div>
 
-整理不易，欢迎关注，🌟点赞收藏~  
+若是有用，❤️不妨给个⭐️🌟支持一下吧~ 🙃🤪🍀  
 
 ## 2. C++版本源码
 
@@ -34,7 +34,7 @@ RobustVideoMatting C++ 版本的源码包含ONNXRuntime、MNN、NCNN和TNN四个
  * [tnn_rvm.cpp](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/tnn/cv/tnn_rvm.cpp)
  * [tnn_rvm.h](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/tnn/cv/tnn_rvm.h)
 
-NCNN版本的测试没有通过，转换的模型可能有问题，这里先放出代码。TNN版本的正在调试，很快就会放出来。这里案例使用的接口是默认版本，即ONNXRuntime. 目前ONNXRuntime和MNN版本均已测试通过。
+NCNN版本的测试没有通过，转换的模型可能有问题，这里先放出代码。这里案例使用的接口是默认版本，即ONNXRuntime. 目前ONNXRuntime、MNN和TNN版本均已测试通过。
 
 ## 3. 模型文件  
 
@@ -208,7 +208,7 @@ static void test_image()
 
 ### 5.2 视频抠图案例  
 
-#### 5.2.1 默认的ONNXRuntime版本
+#### 5.2.1 ONNXRuntime版本
 ```c++
 
 #include "lite/lite.h"
@@ -250,7 +250,28 @@ static void test_mnn()
 #endif
 }
 ```
+#### 5.2.3 TNN版本
+```C++
+static void test_tnn()
+{
+#ifdef ENABLE_TNN
 
+  std::string proto_path = "../hub/tnn/cv/rvm_mobilenetv3_fp32-480-480-sim.opt.tnnproto";
+  std::string model_path = "../hub/tnn/cv/rvm_mobilenetv3_fp32-480-480-sim.opt.tnnmodel";
+  std::string video_path = "../examples/lite/resources/test_lite_rvm_1.mp4";
+  std::string output_path = "../logs/test_lite_rvm_1_tnn.mp4";
+
+  auto *rvm = new lite::tnn::cv::matting::RobustVideoMatting(
+      proto_path, model_path, 16); // 16 threads
+  std::vector<lite::types::MattingContent> contents;
+
+  // 1. video matting.
+  rvm->detect_video(video_path, output_path, contents, false);
+
+  delete rvm;
+#endif
+}
+```
 
 * 输出结果为：  
 

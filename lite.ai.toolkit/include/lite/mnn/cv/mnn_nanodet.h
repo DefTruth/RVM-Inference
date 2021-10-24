@@ -27,7 +27,7 @@ namespace mnncv
   class LITE_EXPORTS MNNNanoDet : public BasicMNNHandler
   {
   public:
-    explicit MNNNanoDet(const std::string _mnn_path, unsigned int _num_threads = 1); //
+    explicit MNNNanoDet(const std::string &_mnn_path, unsigned int _num_threads = 1); //
     ~MNNNanoDet() override = default;
 
   private:
