@@ -9,15 +9,15 @@
 使用Lite.AI.ToolKit C++工具箱来跑RobustVideoMatting的一些案例(https://github.com/DefTruth/lite.ai.toolkit) ，ONNXRuntime、MNN、NCNN和TNN四个版本。
 
 <div align='center'>
-  <img src='resources/interviewi.gif' height="200px" width="200px">
-  <img src='resources/interview.gif' height="200px" width="200px">  
-  <img src='resources/dance3i.gif' height="200px" width="200px">
-  <img src='resources/dance3.gif' height="200px" width="200px">
+  <img src='resources/interviewi.gif' height="80px" width="160px">
+  <img src='resources/interview.gif' height="80px" width="160px">  
+  <img src='resources/dance3i.gif' height="80px" width="160px">
+  <img src='resources/dance3.gif' height="80px" width="160px">
   <br>
-  <img src='resources/teslai.gif' height="200px" width="200px">
-  <img src='resources/tesla.gif' height="200px" width="200px">  
-  <img src='resources/b5i.gif' height="200px" width="200px">
-  <img src='resources/b5.gif' height="200px" width="200px">
+  <img src='resources/teslai.gif' height="80px" width="160px">
+  <img src='resources/tesla.gif' height="80px" width="160px">  
+  <img src='resources/b5i.gif' height="80px" width="160px">
+  <img src='resources/b5.gif' height="80px" width="160px">
 </div>
 
 若是有用，❤️不妨给个⭐️🌟支持一下吧~ 🙃🤪🍀  
@@ -200,10 +200,10 @@ static void test_image()
 * 输出结果为: (依次为原图、预测的pha、预测的前景fgr、合成图)
 
 <div align='center'>
-  <img src='resources/test.jpg' height="200px" width="200px">
-  <img src='resources/test_rvm_pha.jpg' height="200px" width="200px">
-  <img src='resources/test_rvm_fgr.jpg' height="200px" width="200px">
-  <img src='resources/test_rvm_merge.jpg' height="200px" width="200px">
+  <img src='resources/test.jpg' height="160px" width="160px">
+  <img src='resources/test_rvm_pha.jpg' height="160px" width="160px">
+  <img src='resources/test_rvm_fgr.jpg' height="160px" width="160px">
+  <img src='resources/test_rvm_merge.jpg' height="160px" width="160px">
 </div>
 
 ### 5.2 视频抠图案例  
@@ -276,15 +276,15 @@ static void test_tnn()
 * 输出结果为：  
 
 <div align='center'>
-  <img src='resources/interviewi.gif' height="200px" width="200px">
-  <img src='resources/interview.gif' height="200px" width="200px">  
-  <img src='resources/dance3i.gif' height="200px" width="200px">
-  <img src='resources/dance3.gif' height="200px" width="200px">
+  <img src='resources/interviewi.gif' height="80px" width="160px">
+  <img src='resources/interview.gif' height="80px" width="160px">  
+  <img src='resources/dance3i.gif' height="80px" width="160px">
+  <img src='resources/dance3.gif' height="80px" width="160px">
   <br>
-  <img src='resources/teslai.gif' height="200px" width="200px">
-  <img src='resources/tesla.gif' height="200px" width="200px">  
-  <img src='resources/b5i.gif' height="200px" width="200px">
-  <img src='resources/b5.gif' height="200px" width="200px">
+  <img src='resources/teslai.gif' height="80px" width="160px">
+  <img src='resources/tesla.gif' height="80px" width="160px">  
+  <img src='resources/b5i.gif' height="80px" width="160px">
+  <img src='resources/b5.gif' height="80px" width="160px">
 </div>
 
 ## 6. 编译运行    
