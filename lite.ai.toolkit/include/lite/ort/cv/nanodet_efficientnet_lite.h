@@ -9,21 +9,6 @@
 
 namespace ortcv
 {
-  typedef struct
-  {
-    float grid0;
-    float grid1;
-    float stride;
-  } NanoLiteCenterPoint;
-
-  typedef struct
-  {
-    float ratio;
-    int dw;
-    int dh;
-    bool flag;
-  } NanoLiteScaleParams;
-
   class LITE_EXPORTS NanoDetEfficientNetLite : public BasicOrtHandler
   {
   public:
@@ -32,6 +17,23 @@ namespace ortcv
     {};
 
     ~NanoDetEfficientNetLite() override = default;
+
+  private:
+    // nested classes
+    typedef struct
+    {
+      float grid0;
+      float grid1;
+      float stride;
+    } NanoLiteCenterPoint;
+
+    typedef struct
+    {
+      float ratio;
+      int dw;
+      int dh;
+      bool flag;
+    } NanoLiteScaleParams;
 
   private:
     const float mean_vals[3] = {127.0f, 127.0f, 127.0f}; // BGR

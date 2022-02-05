@@ -10,6 +10,7 @@
 
 #ifdef ENABLE_NCNN
 #include "ncnn/net.h"
+#include "ncnn/layer.h"
 #endif
 
 namespace ncnncore {}

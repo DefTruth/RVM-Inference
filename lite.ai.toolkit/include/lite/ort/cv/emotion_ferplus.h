@@ -13,7 +13,7 @@ namespace ortcv
   {
   private:
     const char *emotion_texts[8] = {
-        "netural", "happiness", "surprise", "sadness", "anger",
+        "neutral", "happiness", "surprise", "sadness", "anger",
         "disgust", "fear", "contempt"
     };
   public:

@@ -9,21 +9,23 @@
 
 namespace mnncv
 {
-  typedef struct
-  {
-    float r;
-    int dw;
-    int dh;
-    int new_unpad_w;
-    int new_unpad_h;
-    bool flag;
-  } YOLOPScaleParams;
-
   class LITE_EXPORTS MNNYOLOP : public BasicMNNHandler
   {
   public:
     explicit MNNYOLOP(const std::string &_mnn_path, unsigned int _num_threads = 1); //
     ~MNNYOLOP() override = default;
+
+  private:
+    // nested classes
+    typedef struct
+    {
+      float r;
+      int dw;
+      int dh;
+      int new_unpad_w;
+      int new_unpad_h;
+      bool flag;
+    } YOLOPScaleParams;
 
   private:
     const float mean_vals[3] = {255.f * 0.485f, 255.f * 0.456, 255.f * 0.406f}; // RGB

@@ -29,10 +29,11 @@ namespace lite
 
     LITE_EXPORTS cv::Mat draw_emotion(const cv::Mat &mat, types::Emotions &emotions);
 
+    LITE_EXPORTS cv::Mat draw_boxes_with_landmarks(const cv::Mat &mat, const std::vector<types::BoxfWithLandmarks> &boxes_kps, bool text = false);
+
     LITE_EXPORTS void draw_boxes_inplace(cv::Mat &mat_inplace, const std::vector<types::Boxf> &boxes);
 
-    LITE_EXPORTS void
-    draw_axis_inplace(cv::Mat &mat_inplace, const types::EulerAngles &euler_angles, float size = 50.f, int thickness = 2);
+    LITE_EXPORTS void draw_axis_inplace(cv::Mat &mat_inplace, const types::EulerAngles &euler_angles, float size = 50.f, int thickness = 2);
 
     LITE_EXPORTS void draw_landmarks_inplace(cv::Mat &mat, types::Landmarks &landmarks);
 
@@ -42,24 +43,23 @@ namespace lite
 
     LITE_EXPORTS void draw_emotion_inplace(cv::Mat &mat_inplace, types::Emotions &emotions);
 
-    LITE_EXPORTS void
-    hard_nms(std::vector<types::Boxf> &input, std::vector<types::Boxf> &output, float iou_threshold, unsigned int topk);
+    LITE_EXPORTS void draw_boxes_with_landmarks_inplace(cv::Mat &mat_inplace, const std::vector<types::BoxfWithLandmarks> &boxes_kps, bool text = false);
 
-    LITE_EXPORTS void
-    blending_nms(std::vector<types::Boxf> &input, std::vector<types::Boxf> &output, float iou_threshold, unsigned int topk);
+    LITE_EXPORTS void hard_nms(std::vector<types::Boxf> &input, std::vector<types::Boxf> &output, float iou_threshold, unsigned int topk);
 
-    LITE_EXPORTS void
-    offset_nms(std::vector<types::Boxf> &input, std::vector<types::Boxf> &output, float iou_threshold, unsigned int topk);
+    LITE_EXPORTS void blending_nms(std::vector<types::Boxf> &input, std::vector<types::Boxf> &output, float iou_threshold, unsigned int topk);
+
+    LITE_EXPORTS void offset_nms(std::vector<types::Boxf> &input, std::vector<types::Boxf> &output, float iou_threshold, unsigned int topk);
 
     namespace math
     {
       template<typename T=float>
-      std::vector<T> softmax(const std::vector<T> &logits, unsigned int &max_id);
+      std::vector<float> softmax(const std::vector<T> &logits, unsigned int &max_id);
 
       template LITE_EXPORTS std::vector<float> softmax(const std::vector<float> &logits, unsigned int &max_id);
 
       template<typename T=float>
-      std::vector<T> softmax(const T *logits, unsigned int _size, unsigned int &max_id);
+      std::vector<float> softmax(const T *logits, unsigned int _size, unsigned int &max_id);
 
       template LITE_EXPORTS std::vector<float> softmax(const float *logits, unsigned int _size, unsigned int &max_id);
 
@@ -74,7 +74,7 @@ namespace lite
       template LITE_EXPORTS std::vector<unsigned int> argsort(const float *arr, unsigned int _size);
 
       template<typename T=float>
-      T cosine_similarity(const std::vector<T> &a, const std::vector<T> &b);
+      float cosine_similarity(const std::vector<T> &a, const std::vector<T> &b);
 
       template LITE_EXPORTS float cosine_similarity(const std::vector<float> &a, const std::vector<float> &b);
     }
@@ -83,15 +83,15 @@ namespace lite
 }
 
 template<typename T>
-std::vector<T> lite::utils::math::softmax(const T *logits, unsigned int _size, unsigned int &max_id)
+std::vector<float> lite::utils::math::softmax(const T *logits, unsigned int _size, unsigned int &max_id)
 {
   types::__assert_type<T>();
   if (_size == 0 || logits == nullptr) return {};
-  T max_prob = static_cast<T>(0), total_exp = static_cast<T>(0);
+  float max_prob = 0.f, total_exp = 0.f;
   std::vector<float> softmax_probs(_size);
   for (unsigned int i = 0; i < _size; ++i)
   {
-    softmax_probs[i] = std::expf(logits[i]);
+    softmax_probs[i] = std::exp((float) logits[i]);
     total_exp += softmax_probs[i];
   }
   for (unsigned int i = 0; i < _size; ++i)
@@ -107,16 +107,16 @@ std::vector<T> lite::utils::math::softmax(const T *logits, unsigned int _size, u
 }
 
 template<typename T>
-std::vector<T> lite::utils::math::softmax(const std::vector<T> &logits, unsigned int &max_id)
+std::vector<float> lite::utils::math::softmax(const std::vector<T> &logits, unsigned int &max_id)
 {
   types::__assert_type<T>();
   if (logits.empty()) return {};
   const unsigned int _size = logits.size();
-  T max_prob = static_cast<T>(0), total_exp = static_cast<T>(0);
+  float max_prob = 0.f, total_exp = 0.f;
   std::vector<float> softmax_probs(_size);
   for (unsigned int i = 0; i < _size; ++i)
   {
-    softmax_probs[i] = std::expf(logits[i]);
+    softmax_probs[i] = std::exp((float) logits[i]);
     total_exp += softmax_probs[i];
   }
   for (unsigned int i = 0; i < _size; ++i)
@@ -159,21 +159,21 @@ std::vector<unsigned int> lite::utils::math::argsort(const T *arr, unsigned int 
 }
 
 template<typename T>
-T lite::utils::math::cosine_similarity(const std::vector<T> &a, const std::vector<T> &b)
+float lite::utils::math::cosine_similarity(const std::vector<T> &a, const std::vector<T> &b)
 {
   types::__assert_type<T>();
-  T zero_vale = static_cast<T>(0);
+  float zero_vale = 0.f;
   if (a.empty() || b.empty() || (a.size() != b.size())) return zero_vale;
   const unsigned int _size = a.size();
-  T mul_a = zero_vale, mul_b = zero_vale, mul_ab = zero_vale;
+  float mul_a = zero_vale, mul_b = zero_vale, mul_ab = zero_vale;
   for (unsigned int i = 0; i < _size; ++i)
   {
-    mul_a += a[i] * a[i];
-    mul_b += b[i] * b[i];
-    mul_ab += a[i] * b[i];
+    mul_a += (float) a[i] * (float) a[i];
+    mul_b += (float) b[i] * (float) b[i];
+    mul_ab += (float) a[i] * (float) b[i];
   }
   if (mul_a == zero_vale || mul_b == zero_vale) return zero_vale;
-  return static_cast<T>(mul_ab / (std::sqrt(mul_a) * std::sqrt(mul_b)));
+  return (mul_ab / (std::sqrt(mul_a) * std::sqrt(mul_b)));
 }
 
 #endif //LITE_AI_TOOLKIT_UTILS_H

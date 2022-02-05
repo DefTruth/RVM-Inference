@@ -11,14 +11,6 @@ namespace ortcv
 {
   // reference: Pytorch_Retinaface python implementation.
   // https://github.com/biubug6/Pytorch_Retinaface/blob/master/layers/functions/prior_box.py
-  struct RetinaAnchor
-  {
-    float cx;
-    float cy;
-    float s_kx;
-    float s_ky;
-  };
-
   class LITE_EXPORTS RetinaFace : public BasicOrtHandler
   {
   public:
@@ -27,6 +19,16 @@ namespace ortcv
     {};
 
     ~RetinaFace() override = default;
+
+  private:
+    // nested classes
+    struct RetinaAnchor
+    {
+      float cx;
+      float cy;
+      float s_kx;
+      float s_ky;
+    };
 
   private:
     const float mean_vals[3] = {104.f, 117.f, 123.f}; // bgr order

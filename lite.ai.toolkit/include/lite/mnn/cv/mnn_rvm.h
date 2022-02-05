@@ -14,7 +14,7 @@ namespace mnncv
   public:
     explicit MNNRobustVideoMatting(const std::string &_mnn_path,
                                    unsigned int _num_threads = 1,
-                                   unsigned int _variant_type = VARIANT::MOBILENETV3); //
+                                   unsigned int _variant_type = 0); //
     ~MNNRobustVideoMatting();
 
   private:
@@ -105,9 +105,10 @@ namespace mnncv
      * Image Matting Using RVM(https://github.com/PeterL1n/RobustVideoMatting)
      * @param mat: cv::Mat BGR HWC
      * @param content: types::MattingContent to catch the detected results.
+     * @param video_mode: false by default.
      * See https://github.com/PeterL1n/RobustVideoMatting/blob/master/documentation/inference_zh_Hans.md
      */
-    void detect(const cv::Mat &mat, types::MattingContent &content);
+    void detect(const cv::Mat &mat, types::MattingContent &content, bool video_mode = false);
     /**
      * Video Matting Using RVM(https://github.com/PeterL1n/RobustVideoMatting)
      * @param video_path: eg. xxx/xxx/input.mp4

@@ -91,10 +91,11 @@ namespace ortcv
      * @param mat: cv::Mat BGR HWC
      * @param content: types::MattingContent to catch the detected results.
      * @param downsample_ratio: 0.25 by default.
+     * @param video_mode: false by default.
      * See https://github.com/PeterL1n/RobustVideoMatting/blob/master/documentation/inference_zh_Hans.md
      */
     void detect(const cv::Mat &mat, types::MattingContent &content,
-                float downsample_ratio = 0.25f);
+                float downsample_ratio = 0.25f, bool video_mode = false);
     /**
      * Video Matting Using RVM(https://github.com/PeterL1n/RobustVideoMatting)
      * @param video_path: eg. xxx/xxx/input.mp4

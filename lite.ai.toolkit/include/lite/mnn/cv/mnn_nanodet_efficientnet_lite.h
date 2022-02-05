@@ -9,26 +9,28 @@
 
 namespace mnncv
 {
-  typedef struct
-  {
-    float grid0;
-    float grid1;
-    float stride;
-  } NanoLiteCenterPoint;
-
-  typedef struct
-  {
-    float ratio;
-    int dw;
-    int dh;
-    bool flag;
-  } NanoLiteScaleParams;
-
   class LITE_EXPORTS MNNNanoDetEfficientNetLite : public BasicMNNHandler
   {
   public:
     explicit MNNNanoDetEfficientNetLite(const std::string &_mnn_path, unsigned int _num_threads = 1); //
     ~MNNNanoDetEfficientNetLite() override = default;
+
+  private:
+    // nested classes
+    typedef struct
+    {
+      float grid0;
+      float grid1;
+      float stride;
+    } NanoLiteCenterPoint;
+
+    typedef struct
+    {
+      float ratio;
+      int dw;
+      int dh;
+      bool flag;
+    } NanoLiteScaleParams;
 
   private:
     const float mean_vals[3] = {127.f, 127.f, 127.f}; // BGR

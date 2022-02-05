@@ -26,6 +26,7 @@ namespace tnncore
     int input_channel;
     int input_height;
     int input_width;
+    int num_outputs = 1;
     unsigned int input_value_size;
     tnn::DataFormat input_data_format;  // e.g DATA_FORMAT_NHWC
     tnn::MatType input_mat_type; // e.g NCHW_FLOAT

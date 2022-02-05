@@ -9,10 +9,8 @@
 
 namespace ortcv
 {
-
   class LITE_EXPORTS UltraFace : public BasicOrtHandler
   {
-
   public:
     explicit UltraFace(const std::string &_onnx_path, unsigned int _num_threads = 1) :
         BasicOrtHandler(_onnx_path, _num_threads)
@@ -22,11 +20,12 @@ namespace ortcv
 
   private:
     static constexpr const float mean_val = 127.0f;
-    static constexpr const float scale_val = 1.0 / 128.0f;
+    static constexpr const float scale_val = 1.0f / 128.0f;
     enum NMS
     {
       HARD = 0, BLEND = 1, OFFSET = 2
     };
+    static constexpr const unsigned int max_nms = 30000;
 
   private:
     Ort::Value transform(const cv::Mat &mat) override;

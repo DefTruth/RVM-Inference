@@ -19,8 +19,8 @@ namespace ortcv
     ~ReXNetEmotion7() override = default;
 
   private:
-    const float mean_vals[3] = {255.f * 0.485f, 255.f * 0.456, 255.f * 0.406f};
-    const float scale_vals[3] = {1 / (255.f * 0.229f), 1 / (255.f * 0.224f), 1 / (255.f * 0.225f)};
+    const float mean_vals[3] = {255.f * 0.485f, 255.f * 0.456f, 255.f * 0.406f};
+    const float scale_vals[3] = {1.f / (255.f * 0.229f), 1.f / (255.f * 0.224f), 1.f / (255.f * 0.225f)};
 
     const char *emotion_texts[7] = {
         "angry", "disgust", "fear", "happiness", "neutral", "sadness", "surprise"

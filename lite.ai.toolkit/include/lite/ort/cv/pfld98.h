@@ -11,7 +11,6 @@ namespace ortcv
 {
   class LITE_EXPORTS PFLD98 : public BasicOrtHandler
   {
-
   public:
     explicit PFLD98(const std::string &_onnx_path, unsigned int _num_threads = 1) :
         BasicOrtHandler(_onnx_path, _num_threads)

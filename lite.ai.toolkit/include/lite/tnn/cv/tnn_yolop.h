@@ -9,16 +9,6 @@
 
 namespace tnncv
 {
-  typedef struct
-  {
-    float r;
-    int dw;
-    int dh;
-    int new_unpad_w;
-    int new_unpad_h;
-    bool flag;
-  } YOLOPScaleParams;
-
   class LITE_EXPORTS TNNYOLOP : public BasicTNNHandler
   {
   public:
@@ -26,6 +16,17 @@ namespace tnncv
                       const std::string &_model_path,
                       unsigned int _num_threads = 1); //
     ~TNNYOLOP() override = default;
+
+  private:
+    typedef struct
+    {
+      float r;
+      int dw;
+      int dh;
+      int new_unpad_w;
+      int new_unpad_h;
+      bool flag;
+    } YOLOPScaleParams;
 
   private:
     // In TNN: x*scale + bias

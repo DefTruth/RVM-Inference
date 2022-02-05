@@ -9,21 +9,6 @@
 
 namespace tnncv
 {
-  typedef struct
-  {
-    float grid0;
-    float grid1;
-    float stride;
-  } NanoCenterPoint;
-
-  typedef struct
-  {
-    float ratio;
-    int dw;
-    int dh;
-    bool flag;
-  } NanoScaleParams;
-
   class LITE_EXPORTS TNNNanoDet : public BasicTNNHandler
   {
   public:
@@ -31,6 +16,23 @@ namespace tnncv
                         const std::string &_model_path,
                         unsigned int _num_threads = 1); //
     ~TNNNanoDet() override = default;
+
+  private:
+    // nested classes
+    typedef struct
+    {
+      float grid0;
+      float grid1;
+      float stride;
+    } NanoCenterPoint;
+
+    typedef struct
+    {
+      float ratio;
+      int dw;
+      int dh;
+      bool flag;
+    } NanoScaleParams;
 
   private:
     // In TNN: x*scale + bias

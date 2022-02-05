@@ -9,21 +9,6 @@
 
 namespace ncnncv
 {
-  typedef struct
-  {
-    float grid0;
-    float grid1;
-    float stride;
-  } NanoLiteDepreciatedCenterPoint;
-
-  typedef struct
-  {
-    float ratio;
-    int dw;
-    int dh;
-    bool flag;
-  } NanoLiteDepreciatedScaleParams;
-
   class LITE_EXPORTS NCNNNanoDetEfficientNetLiteDepreciated : public BasicNCNNHandler
   {
   public:
@@ -33,6 +18,23 @@ namespace ncnncv
                                                     int _input_height = 320,
                                                     int _input_width = 320); //
     ~NCNNNanoDetEfficientNetLiteDepreciated() override = default;
+
+  private:
+    // nested classes
+    typedef struct
+    {
+      float grid0;
+      float grid1;
+      float stride;
+    } NanoLiteDepreciatedCenterPoint;
+
+    typedef struct
+    {
+      float ratio;
+      int dw;
+      int dh;
+      bool flag;
+    } NanoLiteDepreciatedScaleParams;
 
   private:
     const float mean_vals[3] = {103.53f, 116.28f, 123.675f}; // BGR

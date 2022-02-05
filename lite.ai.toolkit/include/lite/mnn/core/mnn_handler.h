@@ -27,6 +27,7 @@ namespace mnncore
     int input_height;
     int input_width;
     int dimension_type;
+    int num_outputs = 1;
 
   protected:
     explicit BasicMNNHandler(const std::string &_mnn_path, unsigned int _num_threads = 1);

@@ -9,21 +9,6 @@
 
 namespace ortcv
 {
-  typedef struct
-  {
-    float grid0;
-    float grid1;
-    float stride;
-  } NanoCenterPoint;
-
-  typedef struct
-  {
-    float ratio;
-    int dw;
-    int dh;
-    bool flag;
-  } NanoScaleParams;
-
   class LITE_EXPORTS NanoDet : public BasicOrtHandler
   {
   public:
@@ -34,8 +19,25 @@ namespace ortcv
     ~NanoDet() override = default;
 
   private:
+    // nested classes
+    typedef struct
+    {
+      float grid0;
+      float grid1;
+      float stride;
+    } NanoCenterPoint;
+
+    typedef struct
+    {
+      float ratio;
+      int dw;
+      int dh;
+      bool flag;
+    } NanoScaleParams;
+
+  private:
     const float mean_vals[3] = {103.53f, 116.28f, 123.675f}; // BGR
-    const float scale_vals[3] = {1.f / 57.375f, 1.f / 57.12f, 1.f / 58.395f};
+    const float scale_vals[3] = {0.017429f, 0.017507f, 0.017125f};
 
     const char *class_names[80] = {
         "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat", "traffic light",

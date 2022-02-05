@@ -19,6 +19,18 @@ namespace ortcv
     ~YoloV5() override = default;
 
   private:
+    // nested classes
+    typedef struct
+    {
+      float r;
+      int dw;
+      int dh;
+      int new_unpad_w;
+      int new_unpad_h;
+      bool flag;
+    } YoloV5ScaleParams;
+
+  private:
     static constexpr const float mean_val = 0.f;
     static constexpr const float scale_val = 1.0 / 255.f;
     const char *class_names[80] = {
@@ -39,11 +51,20 @@ namespace ortcv
     static constexpr const unsigned int max_nms = 30000;
 
   private:
-    Ort::Value transform(const cv::Mat &mat) override; //
-    void generate_bboxes(std::vector<types::Boxf> &bbox_collection,
+    Ort::Value transform(const cv::Mat &mat_rs) override; // without resize
+
+    void resize_unscale(const cv::Mat &mat,
+                        cv::Mat &mat_rs,
+                        int target_height,
+                        int target_width,
+                        YoloV5ScaleParams &scale_params);
+
+    void generate_bboxes(const YoloV5ScaleParams &scale_params,
+                         std::vector<types::Boxf> &bbox_collection,
                          std::vector<Ort::Value> &output_tensors,
-                         float score_threshold, float img_height,
-                         float img_width); // rescale & exclude
+                         float score_threshold, int img_height,
+                         int img_width); // rescale & exclude
+
     void nms(std::vector<types::Boxf> &input, std::vector<types::Boxf> &output,
              float iou_threshold, unsigned int topk, unsigned int nms_type);
 

@@ -20,6 +20,7 @@ namespace ncnncore
     std::vector<const char*> output_names;
     std::vector<int> input_indexes;
     std::vector<int> output_indexes;
+    int num_outputs = 1;
 
   protected:
     const unsigned int num_threads; // initialize at runtime.
@@ -45,6 +46,9 @@ namespace ncnncore
     void initialize_handler();
 
     void print_debug_string();
+
+  public:
+    static void print_shape(const ncnn::Mat &mat, const std::string name = "");
 
   };
 }

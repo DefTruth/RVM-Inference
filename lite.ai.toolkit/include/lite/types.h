@@ -49,11 +49,11 @@ namespace lite {
 
       value_type area() const;
 
-      cv::Rect rect() const;
+      ::cv::Rect rect() const;
 
-      cv::Point2i tl() const;
+      ::cv::Point2i tl() const;
 
-      cv::Point2i rb() const;
+      ::cv::Point2i rb() const;
 
       BoundingBoxType() :
           x1(static_cast<value_type>(0)), y1(static_cast<value_type>(0)),
@@ -85,6 +85,16 @@ namespace lite {
       LandmarksType() : flag(false)
       {};
     } Landmarks;
+
+    typedef struct LITE_EXPORTS BoxfWithLandmarksType
+    {
+      Boxf box;
+      Landmarks landmarks;
+      bool flag;
+
+      BoxfWithLandmarksType() : flag(false)
+      {};
+    } BoxfWithLandmarks;
 
     typedef struct LITE_EXPORTS EulerAnglesType
     {
@@ -260,27 +270,27 @@ lite::types::BoundingBoxType<T1, T2>::iou_of(const BoundingBoxType<O1, O2> &othe
 }
 
 template<typename T1, typename T2>
-inline cv::Rect lite::types::BoundingBoxType<T1, T2>::rect() const
+inline ::cv::Rect lite::types::BoundingBoxType<T1, T2>::rect() const
 {
   types::__assert_type<value_type, score_type>();
   auto boxi = this->template convert_type<int>();
-  return cv::Rect(boxi.x1, boxi.y1, boxi.width(), boxi.height());
+  return ::cv::Rect(boxi.x1, boxi.y1, boxi.width(), boxi.height());
 }
 
 template<typename T1, typename T2>
-inline cv::Point2i lite::types::BoundingBoxType<T1, T2>::tl() const
+inline ::cv::Point2i lite::types::BoundingBoxType<T1, T2>::tl() const
 {
   types::__assert_type<value_type, score_type>();
   auto boxi = this->template convert_type<int>();
-  return cv::Point2i(boxi.x1, boxi.y1);
+  return ::cv::Point2i(boxi.x1, boxi.y1);
 }
 
 template<typename T1, typename T2>
-inline cv::Point2i lite::types::BoundingBoxType<T1, T2>::rb() const
+inline ::cv::Point2i lite::types::BoundingBoxType<T1, T2>::rb() const
 {
   types::__assert_type<value_type, score_type>();
   auto boxi = this->template convert_type<int>();
-  return cv::Point2i(boxi.x2, boxi.y2);
+  return ::cv::Point2i(boxi.x2, boxi.y2);
 }
 
 template<typename T1, typename T2>

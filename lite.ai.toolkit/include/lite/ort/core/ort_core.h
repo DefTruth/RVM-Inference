@@ -90,6 +90,12 @@ namespace ortcv
   class LITE_EXPORTS RobustVideoMatting;         // [75] * reference: https://github.com/PeterL1n/RobustVideoMatting
   class LITE_EXPORTS NanoDet;                    // [76] * reference: https://github.com/RangiLyu/nanodet
   class LITE_EXPORTS NanoDetEfficientNetLite;    // [77] * reference: https://github.com/RangiLyu/nanodet
+  class LITE_EXPORTS YoloX_V_0_1_1;              // [78] * reference: https://github.com/Megvii-BaseDetection/YOLOX
+  class LITE_EXPORTS YoloV5_V_6_0;               // [79] * reference: https://github.com/ultralytics/yolov5
+  class LITE_EXPORTS MGMatting;                  // [80] * reference: https://github.com/yucornetto/MGMatting
+  class LITE_EXPORTS NanoDetPlus;                // [81] * reference: https://github.com/RangiLyu/nanodet
+  class LITE_EXPORTS SCRFD;                      // [82] * reference: https://github.com/deepinsight/insightface/tree/master/detection/scrfd
+  class LITE_EXPORTS YOLO5Face;                  // [83] * reference: https://github.com/deepcam-cn/yolov5-face
 
 }
 
