@@ -21,6 +21,9 @@ set(OpenCV_LIBS
 # add your executable
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/examples/build)
 
+file(GLOB ALL_LIBS ${LITE_AI_LIBRARY_DIR}/*dylib)
+file(INSTALL ${ALL_LIBS} DESTINATION ${EXECUTABLE_OUTPUT_PATH})
+
 add_executable(lite_rvm examples/test_lite_rvm.cpp)
 target_link_libraries(lite_rvm
         lite.ai.toolkit
