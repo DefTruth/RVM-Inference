@@ -86,7 +86,7 @@ namespace tnncv
     void print_debug_string(); // debug information
 
   private:
-    void transform(const cv::Mat &mat); //
+    void transform(const cv::Mat &mat_rs); //
 
     void initialize_instance(); // init net & instance
 
