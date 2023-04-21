@@ -1,4 +1,4 @@
-## RobustVideoMatting.lite.ai.toolkit 🚀🚀🌟  
+## RVM ToolKit 🚀🚀🌟  
 <div align='left'>
   <img src=https://img.shields.io/github/stars/DefTruth/RobustVideoMatting.lite.ai.toolkit.svg?style=social >
   <img src=https://img.shields.io/github/forks/DefTruth/RobustVideoMatting.lite.ai.toolkit.svg?style=social >
